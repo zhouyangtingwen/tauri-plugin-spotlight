@@ -279,7 +279,7 @@ fn position_window_at_the_center_of_the_monitor_with_cursor(window: &Window<Wry>
         let rect = NSRect {
             origin: NSPoint {
                 x: (display_pos.x + (display_size.width / 2.0)) - (win_frame.size.width / 2.0),
-                y: y_temp / 2.00,
+                y: y_temp * 2.00,
             },
             size: win_frame.size,
         };
