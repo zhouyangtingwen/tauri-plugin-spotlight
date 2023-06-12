@@ -196,6 +196,9 @@ fn active_another_app(bundle_url: &str) -> Result<(), Error> {
 }
 
 fn register_shortcut_for_window(window: &Window<Wry>, window_config: &WindowConfig) -> Result<(), Error> {
+    if window_config.shortcut.is_empty() {
+        return Ok(());
+    }
     let window = window.to_owned();
     let mut shortcut_manager = window.app_handle().global_shortcut_manager();
     shortcut_manager.register(&window_config.shortcut, move || {
