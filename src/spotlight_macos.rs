@@ -274,10 +274,12 @@ fn position_window_at_the_center_of_the_monitor_with_cursor(window: &Window<Wry>
         let display_pos = monitor.position.to_logical::<f64>(monitor.scale_factor);
         let handle: id = window.ns_window().map_err(|_| Error::FailedToGetNSWindow)? as _;
         let win_frame: NSRect = unsafe { handle.frame() };
+        let y_temp = (display_pos.y + (display_size.height / 2.0)) - (win_frame.size.height / 2.0);
+        println!("y_temp!! {:?}", y_temp);
         let rect = NSRect {
             origin: NSPoint {
                 x: (display_pos.x + (display_size.width / 2.0)) - (win_frame.size.width / 2.0),
-                y: (display_pos.y + (display_size.height / 2.0)) - (win_frame.size.height / 2.0),
+                y: y_temp / 2,
             },
             size: win_frame.size,
         };
